@@ -1,22 +1,20 @@
 import React from "react";
-import "./BookCard.css";
+import Card from 'react-bootstrap/Card';
+import BookDetail from "../../pages/Book/BookDetail";
 
-function CardItem(props) {
+
+function BookCard(props) {
   return (
-    <div className="container">
-      <div className="row">
-        {props.shoes.map((item, index) => {
-          return (
-            <div className="col-md-4" key={index}>
-              <img src={item.image} width="80%" />
-              <h4>{item.title}</h4>
-              <p>{item.author}</p>
-              <p>{item.rating}</p>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <Card style={{ width: '13rem' }}>
+      <Card.Img variant="top" src={'http://localhost:8080' + props.book.image}/>
+      <Card.Body>
+        <Card.Title>{props.book.title}</Card.Title>
+        <Card.Text>
+        {props.book.author}
+        </Card.Text>
+        <Card.Text>rating : {props.book.rating}</Card.Text>
+      </Card.Body>
+    </Card>
   );
 }
-export default CardItem;
+export default BookCard;
