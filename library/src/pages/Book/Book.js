@@ -11,7 +11,7 @@ const Book = () => {
                 setBooks(res.data);
             });
     }, []);
-
+    console.log(books);
 
    return(
     <div 

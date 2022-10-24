@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import BookDetail from "../../pages/Book/BookDetail";
 
@@ -6,9 +7,9 @@ import BookDetail from "../../pages/Book/BookDetail";
 function BookCard(props) {
   return (
     <Card style={{ width: '13rem' }}>
-      <Card.Img variant="top" src={'http://localhost:8080' + props.book.image}/>
+      <Link to={`/books/detail/${props.book.id}`}><Card.Img variant="top" src={'http://localhost:8080' + props.book.image}/></Link>
       <Card.Body>
-        <Card.Title>{props.book.title}</Card.Title>
+        <Link to={`/books/detail/${props.book.id}`}><Card.Title>{props.book.title}</Card.Title></Link>
         <Card.Text>
         {props.book.author}
         </Card.Text>

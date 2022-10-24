@@ -1,27 +1,52 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-const BookDetail = ({ bookId }) => {
-    const [data, setData] = useState();
-  
-    const fetchCardDetail = async (data) => {
-      try {
-        const res = await axios.post('/detail', data);
-        setData(res.data.datas);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  
+const BookDetail = () => {
+    const{bookId} = useParams();
+    const [book, setBook] = useState([]);
+
     useEffect(() => {
-      fetchCardDetail({ bookId });
+        axios.get('/api/v1/books/detail/'+bookId)
+            .then(res => {
+                setBook(res.data);
+            });
     }, []);
-  
-    if (!data) {
-      return null;
-    }
-    return <>"여기에 data 변수의 값들로 세부 화면 구성하기!"</>;
-  };
-  
+
+    return(
+        <Container flex>
+            <Row md = {12}>
+                <Col sm={4}>
+                    <img variant="top" src={'http://localhost:8080' + book.image} width = {300} height={400}/>
+
+                </Col>
+                <Col sm={8}>
+                    <Row sm ={2}>
+                        <Col>{book.title}</Col>
+                        <Col>{book.rating}</Col>
+                    </Row>
+                    <Row sm ={2}>{book.author}</Row>
+                    <Row sm ={8}>{book.content}</Row>
+                </Col>
+            </Row>
+            <Row md = {12}>
+                <Col sm>sm=true</Col>
+                <Col sm>sm=true</Col>
+                <Col sm>sm=true</Col>
+            </Row>
+            <Row md = {12}>
+                <Col sm>sm=true</Col>
+                <Col sm>sm=true</Col>
+                <Col sm>sm=true</Col>
+            </Row>
+
+
+        </Container>
+        
+    )
+}
 
 export default BookDetail;
