@@ -4,6 +4,8 @@ import axios from "axios";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import StarRating from 'react-bootstrap-star-rating';
+
 
 const BookDetail = () => {
     const{bookId} = useParams();
@@ -33,14 +35,20 @@ const BookDetail = () => {
                 </Col>
             </Row>
             <Row md = {12}>
-                <Col sm>sm=true</Col>
-                <Col sm>sm=true</Col>
-                <Col sm>sm=true</Col>
+                <StarRating
+                    defaultValue={5}
+                    min={0}
+                    max={5}
+                    step={0.5} />
+
+                <Col sm>{book.ratingOne}</Col>
+                <Col sm>{book.ratingTwo}</Col>
+                <Col sm>{book.ratingThree}</Col>
+                <Col sm>{book.ratingFour}</Col>
+                <Col sm>{book.ratingFive}</Col>
             </Row>
             <Row md = {12}>
-                <Col sm>sm=true</Col>
-                <Col sm>sm=true</Col>
-                <Col sm>sm=true</Col>
+                <Col sm>===comment line =====</Col>
             </Row>
 
 
